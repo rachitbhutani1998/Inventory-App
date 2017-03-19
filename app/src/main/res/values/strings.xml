@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="delete_all">Delete All Items</string>
+    <string name="insert_dummy">Insert Dummy Data</string>
+    <string name="cancel">Cancel</string>
+    <string name="action_delete_all_products">Delete all Products?</string>
+    <string name="delete_product">Delete this product?</string>
+    <string name="delete">Delete</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit Editor?</string>
+    <string name="product_not_saved">Error saving product</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="action_delete_all_entries">Delete All Entries?</string>
+    <string name="product_saved">Product added</string>
+    <string name="editor_delete_product_failed">Product not deleted.</string>
+    <string name="editor_delete_product_successful">Product successfully deleted.</string>
+    <string name="add_image">Add Image</string>
+</resources>
