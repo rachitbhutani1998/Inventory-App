@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Inventory\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\Inventory\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "D:\\Inventory\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_edit.xml",
+        "source": "D:\\Inventory\\app\\src\\main\\res\\menu\\menu_edit.xml"
+    }
+]

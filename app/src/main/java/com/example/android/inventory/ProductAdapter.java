@@ -31,9 +31,6 @@ import java.io.File;
 import static android.support.v4.app.ActivityCompat.startActivityForResult;
 import static android.support.v4.app.ActivityCompat.startIntentSenderForResult;
 
-/**
- * Created by Rachit on 12/12/2016.
- */
 public class ProductAdapter extends CursorAdapter {
     public ProductAdapter(Context context, Cursor c) {
         super(context, c, 0);
@@ -50,7 +47,7 @@ public class ProductAdapter extends CursorAdapter {
         TextView productName = (TextView) view.findViewById(R.id.product_name);
         final TextView productQuantity = (TextView) view.findViewById(R.id.product_quantity);
         TextView productPrice = (TextView) view.findViewById(R.id.product_price);
-        Button sellButton=(Button) view.findViewById(R.id.sell);
+        View sellButton= view.findViewById(R.id.sell);
         final int productId=cursor.getInt(cursor.getColumnIndexOrThrow(ProductEntry._ID));
 
         final String productNameText = cursor.getString(cursor.getColumnIndexOrThrow(ProductEntry.COLUMN_PRODUCT_NAME));

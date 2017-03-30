@@ -33,12 +33,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android.inventory.data.ProductContract.ProductEntry;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
-import static android.support.v4.content.ContextCompat.getDrawable;
+//
+//import static android.support.v4.app.ActivityCompat.startActivityForResult;
+//import static android.support.v4.content.ContextCompat.getDrawable;
 
 public class EditActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int EXISTING_PRODUCT_LOADER = 0;
