@@ -1,26 +1,18 @@
 package com.example.android.inventory;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.Contacts;
-import android.provider.MediaStore;
+import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -29,15 +21,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android.inventory.data.ProductContract.ProductEntry;
-
-import java.io.File;
-//
-//import static android.support.v4.app.ActivityCompat.startActivityForResult;
-//import static android.support.v4.content.ContextCompat.getDrawable;
 
 public class EditActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int EXISTING_PRODUCT_LOADER = 0;
@@ -45,7 +31,6 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     private EditText mProductQuantity;
     private EditText mProductPrice;
     private Uri mCurrentProductUri;
-    private ImageView mImageView;
     private boolean mProductHasChanged = false;
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
 
@@ -56,8 +41,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     };
     int quantity = 0;
-    private static final int TAKE_PICTURE=1;
     Uri imageUri;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +50,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         Intent intent = getIntent();
         mCurrentProductUri = intent.getData();
         if (mCurrentProductUri == null) {
-            imageUri= Uri.parse("android.resource://"+this.getPackageName()+"/drawable/pic");
+            imageUri = Uri.parse("android.resource://" + this.getPackageName() + "/drawable/pic");
             Log.i("MainActivity", "onCreate: " + mCurrentProductUri);
             setTitle("Add Product");
         } else {
@@ -81,6 +66,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         mProductQuantity.setOnTouchListener(mTouchListener);
         Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(mProductQuantity.getText().toString())) {
@@ -111,45 +97,6 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 mProductQuantity.setText("" + quantity);
             }
         });
-        Button addImage=(Button) findViewById(R.id.add_image_button);
-        addImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                final File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photo));
-                imageUri = Uri.fromFile(photo);
-                startActivityForResult(intent, TAKE_PICTURE);
-            }
-        });
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case TAKE_PICTURE:
-                if (resultCode == Activity.RESULT_OK) {
-                    Uri selectedImage = imageUri;
-                    getContentResolver().notifyChange(selectedImage, null);
-                    ImageView imageView = (ImageView) findViewById(R.id.product_image);
-                    ContentResolver cr = getContentResolver();
-                    Bitmap bitmap;
-                    try {
-                        bitmap = android.provider.MediaStore.Images.Media
-                                .getBitmap(cr, selectedImage);
-
-                        imageView.setImageBitmap(bitmap);
-                        Toast.makeText(this, selectedImage.toString(),
-                                Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT)
-                                .show();
-                        Log.e("Camera", e.toString());
-                    }
-                }
-        }
     }
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -189,10 +136,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         String nameString = mProductName.getText().toString().trim();
         String priceString = mProductPrice.getText().toString().trim();
         String quantityString = mProductQuantity.getText().toString().trim();
-        String imageUriString=imageUri.toString();
         if (mCurrentProductUri == null &&
                 TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString)
-                || TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(imageUriString)) {
+                || TextUtils.isEmpty(quantityString) ) {
             return;
         }
         ContentValues values = new ContentValues();
@@ -207,7 +153,6 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, price);
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, quantity);
-        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE,imageUriString);
 
         if (mCurrentProductUri == null) {
             Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
@@ -301,13 +246,13 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 ProductEntry._ID,
                 ProductEntry.COLUMN_PRODUCT_NAME,
                 ProductEntry.COLUMN_PRODUCT_QUANTITY,
-                ProductEntry.COLUMN_PRODUCT_PRICE,
-                ProductEntry.COLUMN_PRODUCT_IMAGE
+                ProductEntry.COLUMN_PRODUCT_PRICE
         };
         return new CursorLoader(this, mCurrentProductUri, projection, null,
                 null, null);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         if (cursor == null || cursor.getCount() < 1) {
@@ -317,16 +262,10 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
             int quantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY);
             int priceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE);
-            int imageColumnIndex=cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_IMAGE);
 
             String name = cursor.getString(nameColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             int price = cursor.getInt(priceColumnIndex);
-            String image=cursor.getString(imageColumnIndex);
-
-            imageUri=Uri.parse(image);
-            mImageView=(ImageView) findViewById(R.id.product_image);
-            mImageView.setImageURI(imageUri);
             mProductName.setText(name);
             mProductQuantity.setText(Integer.toString(quantity));
             mProductPrice.setText(Integer.toString(price));
@@ -338,7 +277,6 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         mProductName.setText("");
         mProductPrice.setText("");
         mProductQuantity.setText("");
-        mImageView.setImageResource(R.drawable.pic);
     }
 
     private void showUnsavedChangesDialog(

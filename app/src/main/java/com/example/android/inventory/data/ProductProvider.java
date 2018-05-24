@@ -7,12 +7,10 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.example.android.inventory.data.ProductContract.ProductEntry;
 
-/**
- * Created by Rachit on 12/12/2016.
- */
 public class ProductProvider extends ContentProvider{
     public static final int PRODUCTS=200;
     public static final int PRODUCT_ID=201;
@@ -33,7 +31,7 @@ public class ProductProvider extends ContentProvider{
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         SQLiteDatabase db = mHelper.getReadableDatabase();
         Cursor cursor;
@@ -51,12 +49,16 @@ public class ProductProvider extends ContentProvider{
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI "+uri);
         }
-        cursor.setNotificationUri(getContext().getContentResolver(),uri);
+        try {
+            cursor.setNotificationUri(getContext().getContentResolver(),uri);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return cursor;
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         final int match=sUriMatcher.match(uri);
         switch (match){
             case PRODUCTS:
@@ -69,7 +71,7 @@ public class ProductProvider extends ContentProvider{
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues contentValues) {
+    public Uri insert(@NonNull Uri uri, ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
         switch (match){
             case PRODUCTS:
@@ -94,16 +96,12 @@ public class ProductProvider extends ContentProvider{
         if(price<0){
             throw new IllegalArgumentException("Product has no price");
         }
-        String image=values.getAsString(ProductEntry.COLUMN_PRODUCT_IMAGE);
-        if(image==null){
-            throw new IllegalArgumentException("No image provided for product");
-        }
         long id=db.insert(ProductEntry.TABLE_NAME,null,values);
         return ContentUris.withAppendedId(uri,id);
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = mHelper.getWritableDatabase();
         int rowsDeleted;
         final int match = sUriMatcher.match(uri);
@@ -126,7 +124,7 @@ public class ProductProvider extends ContentProvider{
     }
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection,
+    public int update(@NonNull Uri uri, ContentValues contentValues, String selection,
                       String[] selectionArgs) {
         final int match=sUriMatcher.match(uri);
         switch (match){
@@ -158,12 +156,6 @@ public class ProductProvider extends ContentProvider{
             Integer quantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
             if(quantity!=null&&quantity<0){
                 throw new IllegalArgumentException("Quantity is null");
-            }
-        }
-        if(values.containsKey(ProductEntry.COLUMN_PRODUCT_IMAGE)){
-            String image=values.getAsString(ProductEntry.COLUMN_PRODUCT_IMAGE);
-            if (image==null){
-                throw new IllegalArgumentException("Image not set for product");
             }
         }
         if (values.size()==0){

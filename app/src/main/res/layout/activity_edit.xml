@@ -47,6 +47,7 @@
                 android:id="@+id/quantity_text"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:inputType="number" />
@@ -72,20 +73,20 @@
             android:hint="@string/inr"
             android:inputType="number" />
 
-        <Button
-            android:id="@+id/add_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/add_image" />
+        <!--<Button-->
+            <!--android:id="@+id/add_image_button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:text="@string/add_image" />-->
 
-        <ImageView
-            android:id="@+id/product_image"
-            android:layout_width="280dp"
-            android:layout_height="350dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pic"
-            android:contentDescription="@string/to_view_uploaded_image" />
+        <!--<ImageView-->
+            <!--android:id="@+id/product_image"-->
+            <!--android:layout_width="280dp"-->
+            <!--android:layout_height="350dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/pic"-->
+            <!--android:contentDescription="@string/to_view_uploaded_image" />-->
     </LinearLayout>
 </ScrollView>

@@ -1,38 +1,22 @@
 package com.example.android.inventory;
 
+import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.inventory.data.ProductContract;
 import com.example.android.inventory.data.ProductContract.ProductEntry;
-import com.example.android.inventory.data.ProductHelper;
-import com.example.android.inventory.data.ProductProvider;
-
-import java.io.File;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
-import static android.support.v4.app.ActivityCompat.startIntentSenderForResult;
 
 public class ProductAdapter extends CursorAdapter {
-    public ProductAdapter(Context context, Cursor c) {
+    ProductAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
 
@@ -42,6 +26,7 @@ public class ProductAdapter extends CursorAdapter {
                 R.layout.list_item,viewGroup,false);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
         TextView productName = (TextView) view.findViewById(R.id.product_name);

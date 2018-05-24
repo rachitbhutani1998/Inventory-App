@@ -18,18 +18,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.inventory.data.ProductContract;
 import com.example.android.inventory.data.ProductContract.ProductEntry;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 private static final int PRODUCT_LOADER_ID=0;
-    private Uri mCurrentProductUri;
     ProductAdapter mProductAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +32,6 @@ private static final int PRODUCT_LOADER_ID=0;
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Intent intent = getIntent();
-        mCurrentProductUri = intent.getData();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +43,7 @@ private static final int PRODUCT_LOADER_ID=0;
         ListView productListView=(ListView) findViewById(R.id.list);
         mProductAdapter=new ProductAdapter(this,null);
 
-        View emptyView = (View) findViewById(R.id.empty_view);
+        View emptyView = findViewById(R.id.empty_view);
         productListView.setEmptyView(emptyView);
         productListView.setAdapter(mProductAdapter);
 
@@ -125,7 +118,6 @@ private static final int PRODUCT_LOADER_ID=0;
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Samosa");
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 50);
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 10);
-        values.put(ProductEntry.COLUMN_PRODUCT_IMAGE,"android.resource://"+this.getPackageName()+"/drawable/pic");
         Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
         if (newUri == null) {
             Toast.makeText(this, getString(R.string.product_not_saved),
