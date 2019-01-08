@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -30,6 +29,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     private EditText mProductName;
     private EditText mProductQuantity;
     private EditText mProductPrice;
+    private EditText mSupplierText;
+    private EditText mContactText;
     private Uri mCurrentProductUri;
     private boolean mProductHasChanged = false;
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
@@ -42,6 +43,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     };
     int quantity = 0;
     Uri imageUri;
+
+    private String supplierContact;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +55,23 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         mCurrentProductUri = intent.getData();
         if (mCurrentProductUri == null) {
             imageUri = Uri.parse("android.resource://" + this.getPackageName() + "/drawable/pic");
-            Log.i("MainActivity", "onCreate: " + mCurrentProductUri);
             setTitle("Add Product");
         } else {
             setTitle("Edit Product");
-            Log.i("MainActivity", "onCreate: " + mCurrentProductUri);
             getLoaderManager().initLoader(EXISTING_PRODUCT_LOADER, null, this);
         }
         mProductName = (EditText) findViewById(R.id.product_name_text);
         mProductPrice = (EditText) findViewById(R.id.price_text);
+        mContactText = (EditText) findViewById(R.id.contact_text);
+        mSupplierText = (EditText) findViewById(R.id.supplier_text);
         mProductQuantity = (EditText) findViewById(R.id.quantity_text);
+
+        mSupplierText.setOnTouchListener(mTouchListener);
+        mContactText.setOnTouchListener(mTouchListener);
         mProductName.setOnTouchListener(mTouchListener);
         mProductPrice.setOnTouchListener(mTouchListener);
         mProductQuantity.setOnTouchListener(mTouchListener);
+
         Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -98,6 +106,7 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
     }
+
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_product);
@@ -136,9 +145,14 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         String nameString = mProductName.getText().toString().trim();
         String priceString = mProductPrice.getText().toString().trim();
         String quantityString = mProductQuantity.getText().toString().trim();
+        String supplierName = mSupplierText.getText().toString().trim();
+        String supplierContact = mContactText.getText().toString().trim();
+
         if (mCurrentProductUri == null &&
                 TextUtils.isEmpty(nameString) || TextUtils.isEmpty(priceString)
-                || TextUtils.isEmpty(quantityString) ) {
+                || TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierContact)
+                || TextUtils.isEmpty(supplierName)) {
+            Toast.makeText(this, "The fields cannot be empty.", Toast.LENGTH_SHORT).show();
             return;
         }
         ContentValues values = new ContentValues();
@@ -153,6 +167,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, price);
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+        values.put(ProductEntry.COLUMN_SUPPLIER_NAME, supplierName);
+        values.put(ProductEntry.COLUMN_SUPPLIER_CONTACT, supplierContact);
 
         if (mCurrentProductUri == null) {
             Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
@@ -246,7 +262,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
                 ProductEntry._ID,
                 ProductEntry.COLUMN_PRODUCT_NAME,
                 ProductEntry.COLUMN_PRODUCT_QUANTITY,
-                ProductEntry.COLUMN_PRODUCT_PRICE
+                ProductEntry.COLUMN_PRODUCT_PRICE,
+                ProductEntry.COLUMN_SUPPLIER_NAME,
+                ProductEntry.COLUMN_SUPPLIER_CONTACT
         };
         return new CursorLoader(this, mCurrentProductUri, projection, null,
                 null, null);
@@ -262,6 +280,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
             int quantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY);
             int priceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE);
+            int contactColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_CONTACT);
+            int supplierColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_NAME);
 
             String name = cursor.getString(nameColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
@@ -269,6 +289,9 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
             mProductName.setText(name);
             mProductQuantity.setText(Integer.toString(quantity));
             mProductPrice.setText(Integer.toString(price));
+            mContactText.setText(cursor.getString(contactColumnIndex));
+            mSupplierText.setText(cursor.getString(supplierColumnIndex));
+            supplierContact = cursor.getString(contactColumnIndex);
         }
     }
 
@@ -277,6 +300,8 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
         mProductName.setText("");
         mProductPrice.setText("");
         mProductQuantity.setText("");
+        mSupplierText.setText("");
+        mContactText.setText("");
     }
 
     private void showUnsavedChangesDialog(
@@ -297,15 +322,12 @@ public class EditActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void orderMore() {
-        EditText editName = (EditText) findViewById(R.id.product_name_text);
-        EditText quantity = (EditText) findViewById(R.id.quantity_text);
-        String productName = editName.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:rachitbhutani1998@gmail.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, productName);
-        intent.putExtra(Intent.EXTRA_TEXT, quantity.getText().toString() + " more " + productName + " required.");
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + supplierContact));
         if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
+            if (!TextUtils.isEmpty(supplierContact))
+                startActivity(intent);
+            else Toast.makeText(this, "Required supplier's contact.", Toast.LENGTH_SHORT).show();
         }
     }
 }

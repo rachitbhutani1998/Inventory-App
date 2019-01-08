@@ -118,6 +118,8 @@ private static final int PRODUCT_LOADER_ID=0;
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Samosa");
         values.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, 50);
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 10);
+        values.put(ProductEntry.COLUMN_SUPPLIER_CONTACT,"1234567890");
+        values.put(ProductEntry.COLUMN_SUPPLIER_NAME,"Rachit");
         Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
         if (newUri == null) {
             Toast.makeText(this, getString(R.string.product_not_saved),

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/69f5988522d36991bc2190a1847b008919ae8285/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_b725ba70198bab8cfc41138c8e646ace21d0de5d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/9527a285e40a2dd7abf3d9e0fb9fb8201293d1ee/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_4a12a4b27a360bbd5fc7ec331b8974492a962eb9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/3ecac21645ed84141515c7b60c374e9a138b5d67/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8ab89de51a16e66bb8b4b1c583a30c9f6f146741/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/4cdb651b221073562c02e5e8bdb4adc0d78f9622/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_65012b9deb27960c37027c911f2b1039e869b108/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/ed9bdf351434fb93c5c317ea19a6eda9346387c0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_16d26e1180028eafd2038957602e6286201e0676/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_0f718703f3458d8e358fcedda4e976eb2ded3608/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/6a70faa75bc82c11555a918f135eebc0802808e3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_adf810eba601e9e9d7be2a7e3e09881183902d76/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="da477cdab5257efc9f09ea4e975cd10cf477671d">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9c7e01ef93819cd4813d1a1717a7d3d9736a20f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/6e6c07f604e3974747af4d907412edd7c33e5ecf/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3823fc1661a6ccb78abbdb70d728e53e57a3b59d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/ed9bdf351434fb93c5c317ea19a6eda9346387c0/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_858f8474e6e9325dc09a13404258e5772a4e7005/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/ae560da36917fc38faef0d0b8c619103247a7c3f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f2f9c8fe90fe687c3e52478343755df9cba93c5a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/69f5988522d36991bc2190a1847b008919ae8285/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2e01ef16e93ccbdebad25536f5e25abb08739761/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/6f9640dd2bfa9cc04ccae1378bab216388649a64/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_73f066f73dba72b100ea68cf28a6483ec1e7df6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_427ab4f54ce049a328c659016752c43a17c6950e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/87951854ef2d109e15f33de7e5362d814979f4c0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_23c0f4e52c465410e26ddccd8a562377f4520912/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/9527a285e40a2dd7abf3d9e0fb9fb8201293d1ee/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_244090482252356c4e8070f4fef96c002778960f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/ae560da36917fc38faef0d0b8c619103247a7c3f/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_da05433770675fba5de3323db16bcc4111bdfddb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/deb231c63f166f9985a929626fccbf421dcf8fa1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c2ff6310ea3a05320ca2734a61fa0795a42294be/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rachit/.android/build-cache/4cdb651b221073562c02e5e8bdb4adc0d78f9622/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/rachit/AndroidStudioProjects/Inventory-App/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5ea85362294582f9cf8c1be29493f2404fc35741/classes.dex" />
+    </item>
+
+</items>
